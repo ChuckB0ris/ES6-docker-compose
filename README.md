@@ -1,4 +1,4 @@
-# Elastic search 6 docker-compose multiple hosts and nodes
+# Elasticsearch 6 docker-compose multiple hosts and nodes
 Purpose
 
 If you have multiple servers which have docker installed and you want to make them elasticsearch 6 nodes, you can use this. All that I found online was for nodes that reside on the same server and not with a dedicated machine per node. Hope this will help others.
