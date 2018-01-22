@@ -1,0 +1,29 @@
+version: '2.2'
+services:
+  elasticsearch01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.1
+    container_name: whatevernameyouwant
+# First one is self explanatory, the ES_JAVA_OPTS is the heap size, both values should be the same for some odd reason
+    environment:
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+#Volume configuration, first one has the role of copying es6.yml into the ES config dir. The second one is path for the data storage location
+    volumes:
+      - ./es6.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - esdata01:/usr/share/elasticsearch/data
+
+#ES6 port translation configuration docker_host:container
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+#Persistent volume
+volumes:
+  esdata01:
+    driver: local
+#DO NOT FORGET to change rows 3, 18, 27 if you want to have something standard thats easy to undestand, optionaly row 5

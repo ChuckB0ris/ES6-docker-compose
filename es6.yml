@@ -1,0 +1,19 @@
+cluster.name: hub
+node.name: node01
+path.data: /usr/share/elasticsearch/data
+network.host: 0.0.0.0
+# This is the setting you need to be careful with, set it as the cname, a record or IP of the server which hosts docker.
+network.publish_host: test01.yourdomain.com 
+transport.tcp.port: 9300
+transport.publish_port: 9300
+http.port: 9200
+# This setting should include all ES nodes as the examples, you can use the same info as on the publish_host above. Put the current node, as first in the list.
+discovery.zen.ping.unicast.hosts: ["test01.yourdomain.com:9300", "test02.yourdomain.com:9300", "test03.yourdomain.com:9300", "test04.yourdomain.com:9300"]
+discovery.zen.minimum_master_nodes: 1
+xpack.license.self_generated.type: basic
+xpack.security.enabled: false
+http.cors.enabled: true
+http.cors.allow-origin : "*"
+http.cors.allow-methods : OPTIONS, HEAD, GET, POST, PUT, DELETE
+http.cors.allow-headers : X-Requested-With,X-Auth-Token,Content-Type, Content-Length
+
